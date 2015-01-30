@@ -1,0 +1,35 @@
+<h2>Activity</h2>
+
+<form class="form-inline">
+	<div class="form-group">
+		<label for="date">Date</label><input type="text" ng-model="newLog.date" name="date" class="form-control">
+		<label for="type">Type</label><select ng-model="newLog.type" name="type" class="form-control">
+		<option value="Sample">Sample</option><option value="FollowUp">Follow Up</option></select>
+		<label for="count">Count</label><input ng-model="newLog.count" name="count" class="form-control">
+	</div>
+	<div >
+		<label for="notes">Notes</label><textarea style="width:75%" ng-model="newLog.description" class="form-control" rows="2" name="notes"></textarea>
+		<button  type="submit" ng-click="addLog(newLog);newLog = null;" class="btn btn-primary">Add</button>
+	</div>
+
+</form>
+<table id="log" ng-show="1" class="table">
+	<thead>
+		<tr>
+			<th>Date</th><th>Type</th><th>Count</th><th>Active</th>
+		</tr>
+		
+	</thead>
+	<tbody>
+		<tr ng-repeat="log in logs | reverse">
+			<td>{{log.date}}</td>
+			<td>{{log.type}}</td>
+			<td>{{log.count}}</td>
+			<td><input type="checkbox" ng-model="achieve.active" name="active" ng-click="editAchieve(achieve)"></td>
+		</tr>
+	</tbody>
+
+
+</table>
+
+<p class="alert alert-danger" ng-show="err">{{err}}</p>

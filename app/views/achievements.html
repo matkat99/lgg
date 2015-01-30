@@ -1,0 +1,28 @@
+<h2>Achievements</h2>
+
+<table id="achieve" ng-show="achieves.length" class="table">
+	<thead>
+		<tr>
+			<th>Name</th><th>Type</th><th>Criteria</th><th>Active</th>
+		</tr>
+		<tr>
+		<th><input type="text" ng-model="newAchieve.name" name="name"></th>
+		<th><select ng-model="newAchieve.type" name="type">
+		<option value="Sample">Sample</option><option value="FollowUp">Follow Up</option></select></th>
+		<th><input ng-model="newAchieve.criteria" name="criteria"></th>
+		<th><button  ng-click="addAchieve(newAchieve);newAchieve = null;">Add</button></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="achieve in achieves | reverse">
+			<td>{{achieve.name}}</td>
+			<td>{{achieve.type}}</td>
+			<td>{{achieve.criteria}}</td>
+			<td><input type="checkbox" ng-model="achieve.active" name="active" ng-click="editAchieve(achieve)"></td>
+		</tr>
+	</tbody>
+
+
+</table>
+
+<p class="alert alert-danger" ng-show="err">{{err}}</p>

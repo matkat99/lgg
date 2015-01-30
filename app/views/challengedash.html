@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>{{challenge.name}}</h1>
+            </div>
+            <div class="col-md-4">
+                {{challenge.startDate}} - {{challenge.endDate}}
+            </div>
+            <div class="col-md-12">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="text" ng-model="newLog.date" name="date" class="form-control">
+                        <label for="type">Type</label>
+                        <select ng-model="newLog.type" name="type" class="form-control">
+                            <option value="Sample">Sample</option>
+                            <option value="FollowUp">Follow Up</option>
+                        </select>
+                        <label for="count">Count</label>
+                        <input ng-model="newLog.count" name="count" class="form-control">
+
+                    </div>
+                    <div>
+                        <label for="notes">Notes</label>
+                        <textarea style="width:75%" ng-model="newLog.description" class="form-control" rows="2" name="notes"></textarea>
+                        <button type="submit" ng-click="addLog(newLog);newLog = null;" class="btn btn-primary">Add</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4"><img src="images/img_1125.jpg">
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Progress</h3>
+            </div>
+            <div class="panel-body">
+            <table class="table">
+            	<thead>
+            		<tr>
+            			<th>Type</th><th style="width:35%">Me</th><th style="width:35%">Challenge Avg</th>
+            		</tr>
+            	</thead>
+            	<tbody>
+            		<tr ng-repeat="(key, item) in progress">
+            			<td><a ng-href="#/activity/{{challenge.$id}}">{{key}}</a></td>
+            			<td><div class="progress">
+
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{item.userPercent | number:2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.userPercent | number:2}}%;">
+                            <span class="sr-only">{{item.userPercent | number:2}}% Complete</span>
+                        </div>
+                    	</div>
+                    	</td>
+                    	<td>
+                    		<div class="progress">
+
+                        
+                        	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{item.groupPercent | number:2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.groupPercent | number:2}}%;">
+                            <span class="sr-only">{{item.groupPercent | number:2}}% Complete</span>
+                       	 </div>
+                    		</div>
+                    	</td>
+            		</tr>
+            	</tbody>
+
+            </table>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Events</h3>
+            </div>
+            <div class="panel-body">
+                Panel content {{progress}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<h2>Users</h2>
+
+<table id="users" ng-show="users.length" class="table">
+	<thead>
+		<tr>
+			<th>Name</th><th>Email</th><th>Achieves</th><th>Active</th>
+		</tr>
+		
+	</thead>
+	<tbody>
+		<tr ng-repeat="user in users | reverse">
+			<td>{{user.name}}</td>
+			<td>{{user.email}}</td>
+			<td>{{user.achieves}}</td>
+			
+		</tr>
+	</tbody>
+
+
+</table>
+
+<p class="alert alert-danger" ng-show="err">{{err}}</p>
