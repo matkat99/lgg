@@ -89,11 +89,11 @@ angular.module('lggApp')
         templateUrl: 'views/achievements.html',
         controller: 'AchievementsCtrl'
       })
-      .when('/users', {
+      .whenAuthenticated('/users', {
         templateUrl: 'views/users.html',
         controller: 'UsersCtrl'
       })
-      .when('/activity/:challengeId', {
+      .whenAuthenticated('/activity/:challengeId', {
         templateUrl: 'views/activity.html',
         controller: 'ActivityCtrl'
       })
@@ -101,7 +101,7 @@ angular.module('lggApp')
         templateUrl: 'views/challenges.html',
         controller: 'ChallengesCtrl'
       })
-      .when('/challengeDash/:challengeId', {
+      .whenAuthenticated('/challengeDash/:challengeId', {
         templateUrl: 'views/challengedash.html',
         controller: 'ChallengedashCtrl'
       })

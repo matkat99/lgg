@@ -41,7 +41,7 @@ angular.module('lggApp')
     
 
     function redirect() {
-      $location.path('/account');
+      $location.path('/');
     }
 
     function showError(err) {

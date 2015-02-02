@@ -2,7 +2,13 @@
 
 <form class="form-inline">
 	<div class="form-group">
-		<label for="date">Date</label><input type="text" ng-model="newLog.date" name="date" class="form-control">
+		<label for="date">Date</label>
+		<p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="newLog.date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
 		<label for="type">Type</label><select ng-model="newLog.type" name="type" class="form-control">
 		<option value="Sample">Sample</option><option value="FollowUp">Follow Up</option></select>
 		<label for="count">Count</label><input ng-model="newLog.count" name="count" class="form-control">
@@ -22,7 +28,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="log in logs | reverse">
-			<td>{{log.date}}</td>
+			<td>{{log.date | date: 'MM/dd/yyyy'}}</td>
 			<td>{{log.type}}</td>
 			<td>{{log.count}}</td>
 			<td><input type="checkbox" ng-model="achieve.active" name="active" ng-click="editAchieve(achieve)"></td>

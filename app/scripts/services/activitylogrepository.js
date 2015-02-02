@@ -24,6 +24,7 @@ angular.module('lggApp')
         return fbutil.sync(ref.child(challengeId).orderByChild('userId').equalTo(userId)).$asArray();
       },
       addLog: function (newLog, challengeId) {
+        newLog.date = newLog.date.getTime();
         return fbutil.sync(ref.child(challengeId)).$push(newLog);
       // var logs = fbutil.syncArray('activitylogs/'+challengeId+'/'+newLog.userId);
        //     logs.$add({date: newLog.date, type: newLog.type, count: newLog.count, description: newLog.description}).then(function(){ return 1;});

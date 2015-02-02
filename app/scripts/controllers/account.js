@@ -64,7 +64,7 @@ angular.module('lggApp')
       }
       profile = fbutil.syncObject('users/'+user.uid);
       //make sure all the achievements are in the profile
-      userRepository.syncAchieves(profile);
+      //userRepository.syncAchieves(profile);
       profile.$bindTo($scope, 'profile');
 
     }

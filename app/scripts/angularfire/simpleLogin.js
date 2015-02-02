@@ -16,7 +16,7 @@
     .factory('simpleLogin', function($firebaseAuth, fbutil, $q, $rootScope, createProfile) {
       var auth = $firebaseAuth(fbutil.ref());
       var listeners = [];
-
+      var currentUser = null;
       function statusChange() {
         fns.initialized = true;
         fns.user = fns.getUser() || null;
@@ -35,20 +35,23 @@
       var fns = {
         auth: auth,
 
-        user: function() {
-          var user = auth.$getAuth();
-          if(user) {
-              var profile = fbutil.syncObject('users/'+user.uid);
-          profile.$loaded().then( function() { 
-            user.profile = profile;
-          });
+        getProfile: function() {
+          if(currentUser == null && auth.$getAuth()) {
+              return currentUser = fbutil.syncObject('users/'+auth.$getAuth().uid);
+           /* return
+              currentUser = currentUser.$loaded().then(function(data) {
+              console.log('data:'+data);
+              return data;
+          }, function(err) { console.log(err); return err;});
+         */
           }
+          //console.log(currentUser);
+          return currentUser;
           
-          return user;
         }, //todo use getUser() and remove this var
 
         initialized: false,
-
+        
         getUser: function() {
           var user = auth.$getAuth();
           if(user) {
@@ -75,6 +78,7 @@
 
         logout: function() {
           auth.$unauth();
+          currentUser = null;
         },
 
         createAccount: function(email, pass, opts) {

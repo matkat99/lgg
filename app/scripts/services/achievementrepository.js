@@ -22,10 +22,10 @@ angular.module('lggApp')
         return achieves;
       },
       addAchieve: function (newAchieve) {
-        achieves.$add({name: newAchieve.name, type: newAchieve.type, criteria: newAchieve.criteria, active: true}).then(function(){ return 1;});
+        return achieves.$add({name: newAchieve.name, type: newAchieve.type, criteria: newAchieve.criteria, active: true});
       },
       editAchieve: function (achieve) {
-        achieves.$save(achieve).then(function () { return 1;});
+        return achieves.$save(achieve);
 
       }
     };

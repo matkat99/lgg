@@ -59,4 +59,16 @@ angular.module('lggApp')
         $scope.err = null;
       }, 5000);
     }
+
+    //date picker methods
+ $scope.datepickers = {
+        startDate: false,
+        endDate: false
+      }
+$scope.open = function($event, which) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.datepickers[which] = true;
+  };
   });

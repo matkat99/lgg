@@ -1,17 +1,24 @@
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="row">
             <div class="col-md-8">
                 <h1>{{challenge.name}}</h1>
             </div>
             <div class="col-md-4">
-                {{challenge.startDate}} - {{challenge.endDate}}
+                {{challenge.startDate | date: 'MM/dd/yyyy'}} - {{challenge.endDate | date: 'MM/dd/yyyy'}}
             </div>
+            <div class="col-md-12"><p ng-bind-html="item.instructions"></p></div>
             <div class="col-md-12">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="text" ng-model="newLog.date" name="date" class="form-control">
+                        <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="newLog.date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+                        
                         <label for="type">Type</label>
                         <select ng-model="newLog.type" name="type" class="form-control">
                             <option value="Sample">Sample</option>
@@ -32,12 +39,12 @@
         </div>
 
     </div>
-    <div class="col-md-4"><img src="images/img_1125.jpg">
-    </div>
+      <!--  <div class="col-md-4"><img src="images/img_1125.jpg">
+        </div> -->
 
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Progress</h3>
@@ -46,7 +53,7 @@
             <table class="table">
             	<thead>
             		<tr>
-            			<th>Type</th><th style="width:35%">Me</th><th style="width:35%">Challenge Avg</th>
+            			<th>Type</th><th style="width:35%">Me</th><th style="width:35%">Team</th>
             		</tr>
             	</thead>
             	<tbody>
@@ -76,13 +83,13 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Events</h3>
             </div>
             <div class="panel-body">
-                Panel content {{progress}}
+                Events Here
             </div>
         </div>
     </div>

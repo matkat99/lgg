@@ -54,7 +54,8 @@ angular.module('lggApp')
           
       },
       addChallenge: function(user, challenge) {
-          user.challenges.challenge.$id = challenge.name;
+          user.challenges[challenge.$id] = { name: challenge.name, startDate: challenge.startDate, endDate: challenge.endDate };
+
           return user.$save();
 
       }

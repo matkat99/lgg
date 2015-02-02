@@ -12,7 +12,7 @@ angular.module('lggApp')
   	$scope.progress = {};
   	$scope.user = simpleLogin.user;
   	$scope.challenge = challengeRepository.getChallenge($routeParams.challengeId);
-  	$scope.challenges = challengeRepository.getUserChallenges(simpleLogin.user.uid);
+  	//$scope.challenges = challengeRepository.getUserChallenges($scope.user.uid);
   	$scope.logs = activityLogRepository.getChallengeLogs($scope.challenge.$id);
   	$scope.logs.$loaded().then(function() {
   		calcProgress();
@@ -68,6 +68,13 @@ angular.module('lggApp')
     		});
     		
     }
+//date picker methods
+ 
+$scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
 
+    $scope.opened = true;
+  };
 
   });

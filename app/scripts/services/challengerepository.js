@@ -19,9 +19,10 @@ angular.module('lggApp')
                     //check to make sure val not false
               if(val) {
                     if(!user.challenges) { user.challenges = {}; }
-                    user.challenges[challenge.$id] = challenge.name;
+                    user.challenges[challenge.$id] = { name: challenge.name, startDate: challenge.startDate, endDate: challenge.endDate };
                   } else { user.challenges[challenge.$id] = false; }
-                  userRepository.editUser(user).then(function(data) { console.log(data); }, 
+                  userRepository.editUser(user).then(function(data) { //console.log(data); 
+                  }, 
                       function(error) { console.log('error: '+error);});
               });
         });
@@ -37,6 +38,9 @@ angular.module('lggApp')
       },
       addChallenge: function(newChallenge) {
           var challenges = fbutil.syncArray('challenges/');
+          newChallenge.startDate = newChallenge.startDate.getTime();
+          newChallenge.endDate = newChallenge.endDate.getTime();
+          syncUserChallenges(challenge);
            return challenges.$add({startDate: newChallenge.startDate, endDate: newChallenge.endDate, name: newChallenge.name,
             achievements: newChallenge.achievements, users: newChallenge.users, leader: newChallenge.leader});
           //clean up the leader object
@@ -44,14 +48,20 @@ angular.module('lggApp')
          //    return fbutil.sync(ref).$set(newChallenge);
       },
       editChallenge: function(challenge) {
+          if(!challenge.startDate) challenge.startDate = challenge.startDate.getTime();
+          if(!challenge.endDate)challenge.endDate = challenge.endDate.getTime();
           syncUserChallenges(challenge);
           return challenge.$save();
       },
       removeChallenge: function(challenge) {
         return challenge.$remove(challenge);
       },
-      getUserChallenges: function(userId) {
-
+      getActiveChallenges: function(userId) {
+          //return fbutil.sync(ref.orderByChild('startDate').).$toArray();
+      },
+      addUser: function(challenge, user) {
+        syncUserChallenges(challenge);
+          return fbutil.sync(ref.child(challenge.$id+'/users')).$set(user.uid, user.profile.name);
       }
 
     };

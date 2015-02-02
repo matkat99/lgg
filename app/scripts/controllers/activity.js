@@ -10,7 +10,11 @@
 angular.module('lggApp')
   .controller('ActivityCtrl', function ($scope, activityLogRepository, _, simpleLogin, $routeParams) {
   	$scope.challenge = $routeParams.challengeId;
-    $scope.logs = activityLogRepository.getUserLogs(simpleLogin.user.uid, $scope.challenge);
+    var user = simpleLogin.user;
+    
+        $scope.logs = activityLogRepository.getUserLogs(user.uid, $scope.challenge);
+    
+   
 
     // provide a method for adding a log
     $scope.addLog = function(newLog) {
@@ -29,4 +33,12 @@ angular.module('lggApp')
     	}
 
     };
+    //date picker methods
+ 
+$scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
   });

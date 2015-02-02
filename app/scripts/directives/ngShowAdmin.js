@@ -11,13 +11,16 @@ angular.module('lggApp')
     'use strict';
     var isLoggedIn;
     var isAdmin = false;
+    var u = simpleLogin.getProfile();
+
     simpleLogin.watch(function(user) {
       isLoggedIn = !!user;
       
       if(isLoggedIn) { 
-        var u = userRepository.getUser(user.uid);
-        u.$loaded().then(function() {
+        u = simpleLogin.getProfile();
+       u.$loaded().then(function() {
           isAdmin = u.isAdmin ? u.isAdmin : false;
+          
         }); 
       }
 
@@ -32,7 +35,12 @@ angular.module('lggApp')
           // sometimes if ngCloak exists on same element, they argue, so make sure that
           // this one always runs last for reliability
           $timeout(function () {
-            el.toggleClass('ng-cloak', !isAdmin);
+            if(isLoggedIn) { 
+             u.$loaded().then(function() {
+               isAdmin = u.isAdmin ? u.isAdmin : false;
+              el.toggleClass('ng-cloak', !isAdmin);
+            });
+           } else { el.toggleClass('ng-cloak', !isAdmin); }
           }, 0);
         }
 
