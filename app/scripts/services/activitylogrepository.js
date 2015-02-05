@@ -11,6 +11,11 @@ angular.module('lggApp')
   .factory('activityLogRepository', function (fbutil) {
   //var logs = fbutil.syncArray('activitylogs');
    var ref = fbutil.ref('activitylogs');
+   var userLogs = null;
+   var challengeLogs = null;
+   var currentUser = null;
+   var currentUserChallenge = null;
+   var currentChallenge = null;
     // display any errors
    // logs.$loaded().catch(alert);
 
@@ -20,8 +25,11 @@ angular.module('lggApp')
         return fbutil.syncArray('activitylogs');
       },
       getUserLogs: function (userId, challengeId) {
-        //return fbutil.syncArray('activitylogs/'+challengeId+'/'+userId);
-        return fbutil.sync(ref.child(challengeId).orderByChild('userId').equalTo(userId)).$asArray();
+        if(userLogs === null || (currentUser !== userId || currentUserChallenge !== challengeId)) {
+          currentUserChallenge = challengeId;
+          currentUser = userId;
+        return userLogs = fbutil.sync(ref.child(challengeId).orderByChild('userId').equalTo(userId)).$asArray();
+        } else { return userLogs; }
       },
       addLog: function (newLog, challengeId) {
         newLog.date = newLog.date.getTime();
@@ -30,7 +38,10 @@ angular.module('lggApp')
        //     logs.$add({date: newLog.date, type: newLog.type, count: newLog.count, description: newLog.description}).then(function(){ return 1;});
       },
       getChallengeLogs : function(challengeId) {
-          return fbutil.syncArray('activitylogs/'+challengeId);
+        if(challengeLogs === null || currentChallenge!== challengeId) {
+          currentChallenge = challengeId;
+          return challengeLogs = fbutil.syncArray('activitylogs/'+challengeId);
+        } else { return challengeLogs; }
             
       }
     };

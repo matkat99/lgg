@@ -8,15 +8,20 @@
  * Controller of the lggApp
  */
 angular.module('lggApp')
-  .controller('ChallengedashCtrl', function ($scope, challengeRepository, simpleLogin, $routeParams, activityLogRepository, _) {
+  .controller('ChallengedashCtrl', function ($scope, challengeRepository, simpleLogin, $routeParams, activityLogRepository, checkAchievements, _) {
   	$scope.progress = {};
-  	$scope.user = simpleLogin.user;
+  	$scope.user = simpleLogin.getProfile();
+
   	$scope.challenge = challengeRepository.getChallenge($routeParams.challengeId);
   	//$scope.challenges = challengeRepository.getUserChallenges($scope.user.uid);
   	$scope.logs = activityLogRepository.getChallengeLogs($scope.challenge.$id);
-  	$scope.logs.$loaded().then(function() {
-  		calcProgress();
-  	});
+  	$scope.user.$loaded().then(function(){
+        $scope.logs.$loaded().then(function() {
+          calcProgress();
+        });
+
+    });
+    
     
   	$scope.addLog = function(newLog) {
       if( newLog ) {
@@ -24,8 +29,9 @@ angular.module('lggApp')
          newLog.userId = simpleLogin.user.uid;
          activityLogRepository.addLog(newLog, $scope.challenge.$id).then(function() {
          	calcProgress();
+          checkAchievements.check($scope.challenge,$scope.user, newLog.type);
          });
-         
+         //$scope.emit('logAdded', simpleLogin.user.uid);
       }
     };
 
@@ -34,7 +40,8 @@ angular.module('lggApp')
     		var count = _.size($scope.challenge.users)-1;
     		//find highest criteria achiement of each type.
     		_.each($scope.challenge.achievements, function(val) {
-    			if(!$scope.progress[val.type]) { 
+    			if(val){
+          if(!$scope.progress[val.type]) { 
     				$scope.progress[val.type] = {}; 
     				$scope.progress[val.type].total = 0;
     			}
@@ -43,6 +50,7 @@ angular.module('lggApp')
     					$scope.progress[val.type].total = parseInt(val.criteria, 10);
     					
     			} 
+        }
     		});
 
     		//set percents
@@ -57,7 +65,7 @@ angular.module('lggApp')
     			
     				if(key === log.type) { 
 
-		    			if(log.userId === $scope.user.uid) {
+		    			if(log.userId === $scope.user.$id) {
 		    				obj[key].user +=  parseInt(log.count, 10);
 		    			}
 		    			obj[key].group +=  parseInt(log.count, 10);

@@ -9,7 +9,7 @@
  */
 angular.module('lggApp')
   .factory('achievementRepository', function (fbutil) {
-    var achieves = fbutil.syncArray('achievements');
+    var ref = fbutil.ref('achievements');
 
     // display any errors
     //achieves.$loaded().catch(alert);
@@ -19,12 +19,14 @@ angular.module('lggApp')
     // Public API here
     return {
       getAchieves: function () {
-        return achieves;
+        return fbutil.syncArray('achievements');
       },
       addAchieve: function (newAchieve) {
+        var achieves = fbutil.syncArray('achievements');
         return achieves.$add({name: newAchieve.name, type: newAchieve.type, criteria: newAchieve.criteria, active: true});
       },
       editAchieve: function (achieve) {
+        var achieves = fbutil.syncArray('achievements');
         return achieves.$save(achieve);
 
       }

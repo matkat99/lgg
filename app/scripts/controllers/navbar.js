@@ -9,17 +9,28 @@
  */
 angular.module('lggApp')
   .controller('NavbarCtrl', function ($scope, simpleLogin, userRepository) {
-    $scope.user = simpleLogin.getUser();
+   	$scope.auth = simpleLogin.auth;
+
+
+   	$scope.auth.$onAuth(function(data) {
+   		$scope.user = simpleLogin.getUser();
+   		if($scope.user) {
+		    $scope.user = userRepository.getUser($scope.user.uid);
+		    $scope.user.$loaded().then(function() {
+    		$scope.challenges = $scope.user.challenges;
+    		});
+		}
+   	});
+    //$scope.user = simpleLogin.getUser();
     $scope.logout = simpleLogin.logout;
     $scope.challenges = {};
-    if($scope.user) {
+    /*if($scope.user) {
     $scope.user = userRepository.getUser($scope.user.uid);
     $scope.user.$loaded().then(function() {
     	$scope.challenges = $scope.user.challenges;
 
-
     });
-}
+} */
 
     $scope.showExpired = function(challenge) {
     	

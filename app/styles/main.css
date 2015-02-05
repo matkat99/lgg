@@ -106,6 +106,20 @@ body {
 
 }
 
+.small {
+  font-size: .8em;
+
+}
+
+.events {
+    height: 200px;
+
+    overflow: scroll;
+}
+
+.form-inline {
+    margin: 20px auto 20px auto;
+}
 /* bootstrap overrides */
 .navbar-default .navbar-brand {
   color: #000;

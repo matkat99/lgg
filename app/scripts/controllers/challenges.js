@@ -8,7 +8,7 @@
  * Controller of the lggApp
  */
 angular.module('lggApp')
-  .controller('ChallengesCtrl', function ($scope, challengeRepository, _, simpleLogin, achievementRepository, userRepository, $timeout) {
+  .controller('ChallengesCtrl', function ($scope, challengeRepository, _, simpleLogin, achievementRepository, userRepository, $timeout, challengeDataRepository) {
     $scope.challenges = challengeRepository.getChallenges();
     $scope.newChallenge = {};
     $scope.newChallenge.achievements = {};
@@ -17,9 +17,10 @@ angular.module('lggApp')
 
     $scope.addChallenge = function(newChallenge) {
       if( newChallenge && $scope.editLabel === 'New' ) {
-        challengeRepository.addChallenge(newChallenge)
-          // display any errors
-          .catch(alert);
+        challengeRepository.addChallenge(newChallenge).then(function(ref){
+          challengeDataRepository.syncChallenge(challengeRepository.getChallenge(ref.key()));
+        });
+          
          $('#newModal').modal('hide');
          $scope.newChallenge = {};
          
@@ -29,6 +30,7 @@ angular.module('lggApp')
     $scope.editChallenge = function(challenge) {
     	if (challenge && $scope.editLabel === 'Edit' ) {
     		challengeRepository.editChallenge(challenge);
+        challengeDataRepository.syncChallenge(challenge);
     	} 
     	$('#newModal').modal('hide');
     	$scope.newChallenge = {};

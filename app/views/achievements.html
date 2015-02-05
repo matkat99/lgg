@@ -1,16 +1,16 @@
 <h2>Achievements</h2>
 
-<table id="achieve" ng-show="achieves.length" class="table">
+<table id="achieve"  class="table">
 	<thead>
 		<tr>
 			<th>Name</th><th>Type</th><th>Criteria</th><th>Active</th>
 		</tr>
 		<tr>
-		<th><input type="text" ng-model="newAchieve.name" name="name"></th>
-		<th><select ng-model="newAchieve.type" name="type">
+		<th><input type="text" ng-model="newAchieve.name" name="name" class="form-control"></th>
+		<th><select ng-model="newAchieve.type" name="type" class="form-control">
 		<option value="Sample">Sample</option><option value="FollowUp">Follow Up</option></select></th>
-		<th><input ng-model="newAchieve.criteria" name="criteria"></th>
-		<th><button  ng-click="addAchieve(newAchieve);newAchieve = null;">Add</button></th>
+		<th><input ng-model="newAchieve.criteria" name="criteria" class="form-control"></th>
+		<th><button  ng-click="addAchieve(newAchieve);newAchieve = null;" class="btn btn-primary">Add</button></th>
 		</tr>
 	</thead>
 	<tbody>

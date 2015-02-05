@@ -40,16 +40,18 @@ angular.module('lggApp')
           var challenges = fbutil.syncArray('challenges/');
           newChallenge.startDate = newChallenge.startDate.getTime();
           newChallenge.endDate = newChallenge.endDate.getTime();
-          syncUserChallenges(challenge);
+          syncUserChallenges(challenges);
+
            return challenges.$add({startDate: newChallenge.startDate, endDate: newChallenge.endDate, name: newChallenge.name,
-            achievements: newChallenge.achievements, users: newChallenge.users, leader: newChallenge.leader});
+            achievements: newChallenge.achievements, users: newChallenge.users, leader: newChallenge.leader,
+            description: newChallenge.description, instructions: newChallenge.instructions});
           //clean up the leader object
            //  newChallenge.leader.
          //    return fbutil.sync(ref).$set(newChallenge);
       },
       editChallenge: function(challenge) {
-          if(!challenge.startDate) challenge.startDate = challenge.startDate.getTime();
-          if(!challenge.endDate)challenge.endDate = challenge.endDate.getTime();
+          if(!challenge.startDate) { challenge.startDate = challenge.startDate.getTime(); }
+          if(!challenge.endDate) {challenge.endDate = challenge.endDate.getTime(); }
           syncUserChallenges(challenge);
           return challenge.$save();
       },

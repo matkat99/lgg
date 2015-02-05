@@ -9,13 +9,14 @@
     <!-- build:css(.) styles/vendor.css -->
     <link rel="stylesheet" href="bower_components/ng-blockUI/css/blockui.css">
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
+    
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
   </head>
   <body ng-app="lggApp">
     <!--[if lt IE 7]>
@@ -23,7 +24,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-class="{blockui:blockUI==true}">
+    <div >
     <div class="container">
       <div class="header">
       <nav class="navbar navbar-default grass" ng-controller="NavbarCtrl">
@@ -58,8 +59,7 @@
             <li><a href="#/challenges">Challenges</a></li>
             <li class="divider"></li>
             <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            
           </ul>
         </li>
       
@@ -80,7 +80,7 @@
   </div><!-- /.container-fluid -->
 </nav>
       </div>
-      
+      <award></award>
       <div ng-view=""></div>
 
       <div class="footer">
@@ -88,7 +88,21 @@
       </div>
     </div>
 </div>
-
+<div ng-controller="ModalAwardCtrl">
+<script type="text/ng-template" id="awardModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Way to Go!</h3>
+        </div>
+        <div class="modal-body">
+            <img src="images/star.png" width="70"/>{{award}}
+            
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            
+        </div>
+    </script>
+</div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -125,8 +139,11 @@
     <script src="bower_components/bootstrap-ui/src/position/position.js"></script>
     <script src="bower_components/bootstrap-ui/src/dateparser/dateparser.js"></script>
     <script src="bower_components/bootstrap-ui/src/datepicker/datepicker.js"></script>
+    <script src="bower_components/bootstrap-ui/src/alert/alert.js"></script>
+    <script src="bower_components/bootstrap-ui/src/transition/transition.js"></script>
+    <script src="bower_components/bootstrap-ui/src/modal/modal.js"></script>
     <script src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
-    <script type="text/javascript" src="bower_components/ng-blockUI/js/ngBlockui.js"></script>
+    
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -155,6 +172,11 @@
         <script src="scripts/controllers/challengedash.js"></script>
         <script src="scripts/directives/nav.js"></script>
         <script src="scripts/controllers/navbar.js"></script>
+        <script src="scripts/services/eventrepository.js"></script>
+        <script src="scripts/services/challengedatarepository.js"></script>
+        <script src="scripts/directives/event.js"></script>
+        <script src="scripts/services/checkachievements.js"></script>
+        <script src="scripts/directives/award.js"></script>
         <!-- endbuild -->
 </body>
 </html>

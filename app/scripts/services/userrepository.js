@@ -9,7 +9,8 @@
  */
 angular.module('lggApp')
   .factory('userRepository', function (fbutil, achievementRepository, _) {
-    var users = fbutil.syncArray('users');
+   // var users = fbutil.syncArray('users');
+    var ref = fbutil.ref('users');
 
     // display any errors
     //users.$loaded().catch(alert);
@@ -20,10 +21,10 @@ angular.module('lggApp')
           return fbutil.syncObject('users/'+userId);
       },
       getUsers: function () {
-        return users;
+        return fbutil.syncArray('users');
       },
       addUser: function (user) {
-        users.$add({name: user.name, type: user.type, criteria: user.criteria, active: true}).then(function(){ return 1;});
+        return fbutil.sync(ref).$push({name: user.name, type: user.type, criteria: user.criteria, active: true}).then(function(){ return 1;});
       },
       editUser: function (user) {
         return user.$save();

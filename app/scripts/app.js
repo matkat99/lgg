@@ -22,5 +22,6 @@ angular.module('lggApp', [
     'ui.bootstrap.position',
     'ui.bootstrap.dateparser',
     'ui.bootstrap.datepicker',
-    'ngBlockui'
+    'ui.bootstrap.alert',
+    'ui.bootstrap.modal'
   ]);

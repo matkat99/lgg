@@ -32,15 +32,15 @@ angular.module('lggApp')
   		
   		if($scope.user) {
   		return _.find($scope.user.challenges, function(val, key) {
-  			return key == challengeId;
-  		})
-  	} else return true;
+  			return key === challengeId;
+  		});
+  	} else { return true; }
   	};
 
   	$scope.joinChallenge = function(challenge) {
   		
   		challengeRepository.addUser(challenge, $scope.user);
-  	}
+  	};
 
 
 

@@ -23,6 +23,8 @@ angular.module('lggApp')
          
          newLog.userId = simpleLogin.user.uid;
          activityLogRepository.addLog(newLog, $scope.challenge);
+         $scope.$emit('logAdded', simpleLogin.user.uid); 
+         checkAchievements.check($scope.challenge,$scope.user, newLog.type);
          
       }
     };
