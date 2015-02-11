@@ -11,7 +11,8 @@ angular.module('lggApp')
   .controller('ChallengedashCtrl', function ($scope, challengeRepository, simpleLogin, $routeParams, activityLogRepository, checkAchievements, _) {
   	$scope.progress = {};
   	$scope.user = simpleLogin.getProfile();
-
+    $scope.newLog= { count: 1 , date: "", type:""};
+    var reset = angular.copy($scope.newLog);
   	$scope.challenge = challengeRepository.getChallenge($routeParams.challengeId);
   	//$scope.challenges = challengeRepository.getUserChallenges($scope.user.uid);
   	$scope.logs = activityLogRepository.getChallengeLogs($scope.challenge.$id);
@@ -23,15 +24,22 @@ angular.module('lggApp')
     });
     
     
-  	$scope.addLog = function(newLog) {
-      if( newLog ) {
+  	$scope.addLog = function(isValid, newLog) {
+      if( isValid && newLog ) {
         	
          newLog.userId = simpleLogin.user.uid;
          activityLogRepository.addLog(newLog, $scope.challenge.$id).then(function() {
          	calcProgress();
           checkAchievements.check($scope.challenge,$scope.user, newLog.type);
+          $scope.newLog = angular.copy(reset);
+         $scope.actForm.$setPristine();
+         $scope.actForm.$setValidity();
+
          });
          //$scope.emit('logAdded', simpleLogin.user.uid);
+         
+
+
       }
     };
 

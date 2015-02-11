@@ -22,7 +22,7 @@
 <table id="log" ng-show="1" class="table">
 	<thead>
 		<tr>
-			<th>Date</th><th>Type</th><th>Count</th><th>Active</th>
+			<th>Date</th><th>Type</th><th>Count</th><th>Notes</th>
 		</tr>
 		
 	</thead>
@@ -31,7 +31,7 @@
 			<td>{{log.date | date: 'MM/dd/yyyy'}}</td>
 			<td>{{log.type}}</td>
 			<td>{{log.count}}</td>
-			<td><input type="checkbox" ng-model="achieve.active" name="active" ng-click="editAchieve(achieve)"></td>
+			<td>{{log.description}}</td>
 		</tr>
 	</tbody>
 

@@ -35,13 +35,16 @@ angular.module('lggApp')
       }
       else {
         simpleLogin.createAccount(email, pass, {rememberMe: true})
-          .then(redirect, showError);
+          .then(redirectAccount, showError);
       }
     };
     
 
     function redirect() {
       $location.path('/');
+    }
+    function redirectAccount() {
+      $location.path('/account');
     }
 
     function showError(err) {

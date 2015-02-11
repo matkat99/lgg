@@ -8,7 +8,7 @@
  * Controller of the lggApp
  */
 angular.module('lggApp')
-  .controller('MainCtrl', function ($scope, challengeRepository, userRepository, simpleLogin, _) {
+  .controller('MainCtrl', function ($scope, $rootScope, $location, challengeRepository, challengeDataRepository, userRepository, simpleLogin, _) {
 
   	if(simpleLogin.user) {
   	 simpleLogin.getProfile().$loaded().then(function(data) {
@@ -39,7 +39,16 @@ angular.module('lggApp')
 
   	$scope.joinChallenge = function(challenge) {
   		
-  		challengeRepository.addUser(challenge, $scope.user);
+  		challengeRepository.addUser(challenge, $scope.user).then(function() {
+        challengeDataRepository.syncChallenge(challenge);
+          $rootScope.$broadcast('challengeAdded');
+          $location.path('/challengeDash/'+challenge.$id);
+          ;
+
+      });
+      
+      
+
   	};
 
 

@@ -89,7 +89,7 @@ body {
 }
 
 .grass {
-  background: url('../images/grass.png');
+  background: url('../images/grass.jpeg');
 
 }
 
@@ -120,6 +120,15 @@ body {
 .form-inline {
     margin: 20px auto 20px auto;
 }
+/*
+.form-inline input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
+
+  .form-inline input.ng-valid.ng-touched {
+    background-color: #78FA89;
+  }
+*/
 /* bootstrap overrides */
 .navbar-default .navbar-brand {
   color: #000;
@@ -138,3 +147,5 @@ body {
   color: #000;
   background-color: rgba(150,150,150,.4);
 }
+
+

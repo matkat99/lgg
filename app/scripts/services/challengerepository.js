@@ -42,6 +42,7 @@ angular.module('lggApp')
           newChallenge.endDate = newChallenge.endDate.getTime();
           syncUserChallenges(challenges);
 
+
            return challenges.$add({startDate: newChallenge.startDate, endDate: newChallenge.endDate, name: newChallenge.name,
             achievements: newChallenge.achievements, users: newChallenge.users, leader: newChallenge.leader,
             description: newChallenge.description, instructions: newChallenge.instructions});
@@ -63,7 +64,7 @@ angular.module('lggApp')
       },
       addUser: function(challenge, user) {
         syncUserChallenges(challenge);
-          return fbutil.sync(ref.child(challenge.$id+'/users')).$set(user.uid, user.profile.name);
+          return fbutil.sync(ref.child(challenge.$id+'/users')).$set(user.$id, user.name);
       }
 
     };

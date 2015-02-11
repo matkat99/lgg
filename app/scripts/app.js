@@ -15,6 +15,7 @@ angular.module('lggApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngMessages',
     'firebase',
     'firebase.utils',
     'simpleLogin',
