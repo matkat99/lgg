@@ -105,6 +105,10 @@ angular.module('lggApp')
         templateUrl: 'views/challengedash.html',
         controller: 'ChallengedashCtrl'
       })
+      .whenAuthenticated('/challengeDetails/:challengeId', {
+        templateUrl: 'views/challengedetails.html',
+        controller: 'ChallengedetailsCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 

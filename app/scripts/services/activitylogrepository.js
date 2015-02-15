@@ -21,6 +21,9 @@ angular.module('lggApp')
 
     // Public API here
     return {
+      getLog: function(logId, challengeId) {
+          return fbutil.syncObject('activitylogs/'+challengeId+'/'+logId);
+      },
       getLogs: function () {
         return fbutil.syncArray('activitylogs');
       },
@@ -43,6 +46,11 @@ angular.module('lggApp')
           return challengeLogs = fbutil.syncArray('activitylogs/'+challengeId);
         } else { return challengeLogs; }
             
+      },
+      editLog: function(log) {
+        if(log.date.getTime) { log.date = log.date.getTime(); }
+          
+          return log.$save();
       }
     };
   });

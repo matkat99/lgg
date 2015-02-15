@@ -20,9 +20,5 @@ angular.module('lggApp', [
     'firebase.utils',
     'simpleLogin',
     'underscore',
-    'ui.bootstrap.position',
-    'ui.bootstrap.dateparser',
-    'ui.bootstrap.datepicker',
-    'ui.bootstrap.alert',
-    'ui.bootstrap.modal'
+    'ui.bootstrap'
   ]);

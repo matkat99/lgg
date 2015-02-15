@@ -38,6 +38,14 @@ angular.module('lggApp')
           .then(redirectAccount, showError);
       }
     };
+
+    $scope.resetPassword = function(email){
+       simpleLogin.resetPassword(email);  
+          
+      $scope.reset = false;
+
+
+    };
     
 
     function redirect() {

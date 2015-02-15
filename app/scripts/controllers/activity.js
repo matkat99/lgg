@@ -8,33 +8,47 @@
  * Controller of the lggApp
  */
 angular.module('lggApp')
-  .controller('ActivityCtrl', function ($scope, activityLogRepository, _, simpleLogin, $routeParams) {
-  	$scope.challenge = $routeParams.challengeId;
-    var user = simpleLogin.user;
+  .controller('ActivityCtrl', function ($scope, activityLogRepository, _, challengeRepository, simpleLogin, $routeParams, checkAchievements) {
+  	$scope.challenge = challengeRepository.getChallenge($routeParams.challengeId);
+    $scope.log = {};
+    var user = simpleLogin.getProfile();
+    $scope.newLog= { count: 1 , date: "", type:""};
+    var reset = angular.copy($scope.newLog);
     
-        $scope.logs = activityLogRepository.getUserLogs(user.uid, $scope.challenge);
+        $scope.logs = activityLogRepository.getUserLogs(user.$id, $scope.challenge.$id);
     
    
 
     // provide a method for adding a log
-    $scope.addLog = function(newLog) {
-      if( newLog ) {
+    $scope.addLog = function(isValid, newLog) {
+      if( isValid && newLog ) {
           
          
-         newLog.userId = simpleLogin.user.uid;
-         activityLogRepository.addLog(newLog, $scope.challenge);
-         $scope.$emit('logAdded', simpleLogin.user.uid); 
-         checkAchievements.check($scope.challenge,$scope.user, newLog.type);
+         newLog.userId = user.$id;
+         activityLogRepository.addLog(newLog, $scope.challenge.$id);
+         $scope.$emit('logAdded', user.$id); 
+         checkAchievements.check($scope.challenge,user, newLog.type);
+         $scope.newLog = angular.copy(reset);
+         $scope.actForm.$setPristine();
+         $scope.actForm.$setValidity();
          
       }
     };
 
-    $scope.editActivity = function(log) {
+    $scope.editLog = function(log) {
     	if (log) {
     		activityLogRepository.editLog(log);
     	}
-
+      $scope.log = {};
+      $('#newModal').modal('hide');
     };
+
+    $scope.getLog = function(item) {
+      
+        $scope.log = activityLogRepository.getLog(item.$id, $scope.challenge.$id);
+        $scope.editLabel = 'Edit';
+    }; 
+
     //date picker methods
  
 $scope.open = function($event) {

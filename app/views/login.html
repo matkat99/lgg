@@ -14,18 +14,24 @@
     <label for="loginEmail">email</label>
     <input id="loginEmail" required name="email" type="email" ng-model="email" class="form-control" />
   </p>
-  <p class="form-group">
+  <p class="form-group" ng-show="reset">
+    Enter the email address for the account and a message will be sent to that email with a temporary password. Make sure to click on your username in the top right corner and go to Profile to reset your password after you get in. <br />
+    <button  class="btn btn-primary" ng-click="resetPassword(email)">Send Email</button>
+    <button  class="btn btn-default" ng-click="reset = false">Cancel</button>
+  </p>
+  <p class="form-group" ng-hide="reset">
     <label for="loginPass">password</label>
-    <input id="loginPass" required name="pass" type="password" ng-model="pass" class="form-control" />
+    <input id="loginPass" required name="pass" type="password" ng-model="pass" class="form-control" ng-hide="reset" />
   </p>
   <p class="form-group" ng-cloak ng-show="createMode">
     <label for="loginConfirm">confirm pass</label>
     <input id="loginConfirm" required name="confirm" type="password" ng-model="confirm" class="form-control" />
   </p>
 
-  <p>
+  <p ng-hide="reset">
     <button  class="btn btn-primary" ng-click="passwordLogin(email, pass)" ng-hide="createMode">Log In</button>
     <button  class="btn btn-default" ng-click="createMode = true" ng-hide="createMode">Register</button>
+    <button  class="btn btn-default" ng-click="reset = true">Forgot Password</button>
     <button  class="btn btn-primary" ng-cloak ng-show="createMode"
             ng-click="createAccount(email, pass, confirm)">Create Account</button>
     <button  class="btn btn-default" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>

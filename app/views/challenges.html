@@ -11,10 +11,11 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="item in challenges | reverse">
-			<td><a href="" ng-click="getChallenge(item);" data-toggle="modal" data-target="#newModal">{{item.name}}</a></td>
+			<td><a ng-href="#/challengeDetails/{{item.$id}}" >{{item.name}}</a></td>
 			<td>{{item.startDate | date: 'MM/dd/yyyy'}}</td>
 			<td>{{item.endDate | date: 'MM/dd/yyyy'}}</td>
 			<td>{{item.leader.name}}</td>
+      <td><a href="" ng-click="getChallenge(item);" data-toggle="modal" data-target="#newModal" class="btn btn-primary" >Edit</a>
 		</tr>
 	</tbody>
 

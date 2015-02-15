@@ -106,6 +106,18 @@
         removeUser: function(email, pass) {
           return auth.$removeUser({email: email, password: pass});
         },
+        resetPassword: function(email) {
+            fbutil.ref().resetPassword({
+              email : email
+            }, function(error) {
+            if (error === null) {
+              console.log("Password reset email sent successfully");
+            } else {
+              console.log("Error sending password reset email:", error);
+            }
+          });
+
+        },
 
         watch: function(cb, $scope) {
           listeners.push(cb);
