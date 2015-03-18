@@ -14,10 +14,10 @@
     <label for="loginEmail">email</label>
     <input id="loginEmail" required name="email" type="email" ng-model="email" class="form-control" />
   </p>
-  <p class="form-group" ng-show="reset">
+  <p class="form-group" ng-if="reset">
     Enter the email address for the account and a message will be sent to that email with a temporary password. Make sure to click on your username in the top right corner and go to Profile to reset your password after you get in. <br />
     <button  class="btn btn-primary" ng-click="resetPassword(email)">Send Email</button>
-    <button  class="btn btn-default" ng-click="reset = false">Cancel</button>
+    <button  class="btn btn-default" ng-click="cancelReset()">Cancel</button>
   </p>
   <p class="form-group" ng-hide="reset">
     <label for="loginPass">password</label>

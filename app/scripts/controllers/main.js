@@ -8,7 +8,7 @@
  * Controller of the lggApp
  */
 angular.module('lggApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $location, challengeRepository, challengeDataRepository, userRepository, simpleLogin, _) {
+  .controller('MainCtrl', function ($scope, $rootScope, $location, $anchorScroll, challengeRepository, challengeDataRepository, userRepository, simpleLogin, _) {
 
   	if(simpleLogin.user) {
   	 simpleLogin.getProfile().$loaded().then(function(data) {
@@ -17,6 +17,8 @@ angular.module('lggApp')
   	 });
   	}
   	
+
+    /*
   	$scope.challenges = challengeRepository.getChallenges();
 
   	$scope.challenges.$loaded().then(function(){
@@ -50,7 +52,13 @@ angular.module('lggApp')
       
 
   	};
+ */
 
+ $scope.scrollTo = function(id) {
+    $location.hash(id);
+      $anchorScroll();
+
+ }
 
 
   });

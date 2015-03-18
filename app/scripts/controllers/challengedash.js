@@ -20,6 +20,10 @@ angular.module('lggApp')
         $scope.logs.$loaded().then(function() {
           $scope.progress = calcProgress.calcForOne($scope.user.$id, $scope.challenge, $scope.logs);
           $scope.count = _.size($scope.challenge.users)-1;
+          $scope.completed = $scope.progress.completed;
+          $scope.achieveCount = $scope.progress.count;
+          delete $scope.progress.count;
+          delete $scope.progress.completed;
 
         });
 
@@ -46,6 +50,19 @@ angular.module('lggApp')
       }
     };
 
+    $scope.achieveMessage = function(achieve) {
+        var plural = 'people';
+        if(achieve.criteria == 1) plural = 'person'; 
+        switch(achieve.type) {
+          case 'Sample' :
+              return "Share an oil sample with "+ achieve.criteria +" "+plural;
+          case 'FollowUp' :
+              return "Follow up with "+ achieve.criteria +" "+plural;
+
+
+        }
+
+    }
 
 //date picker methods
  

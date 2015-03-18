@@ -1,27 +1,65 @@
 
-<div class="pull-right">
-		<img src="images/us.jpeg" alt="Keri" >
-	</div>
-<div >
-<h2 class="brand">Welcome!</h2>
-	<p>We are so excited for the fun and incredible experiences that each of you will get to experience this month as you take the time to Share Big! As you start this challenge, we hope that you will reflect upon how your life has changed since you’ve started using dōTERRA’s essential oils and the gratitude you feel toward the person who took time to share these precious gifts with you. </p>
+<div role="main" class="main">
+            
+            <section id="head">
+            
+              
+                <div class="bannerBox"><img src="images/mainBanner.jpg" alt="Image of Essential Oils and Jasmine"></div>
+                <nav class="mainNav">
+                <ul>
 
-<p>We know that as you share the oils with others, that they will be equally grateful to you for taking time to help make their lives better. So cast your fears aside and be bold in sharing, someone will be ever so grateful that you did. </p>
-</div>
-	
-<div class="clearfix"></div>
-		<div >
-		<h2 class="brand">Challenges</h2>
-			<p>To participate in a challenge you will need to create an account <a ng-href=
-			"/#/login">here</a>. Once you have registered you can join a challenge. Any challenges you have joined will show under the Challenges menu. That is where you will log the activities specific to the challenge you have joined. My awesome husband created this site for us, but it's still a work in progress so let us know if you run into problems and we will do our best to keep things running smoothly.</p>
-<div ng-repeat="item in challenges" class="challengeBox">
+                    <li ><a data-ng-click="scrollTo('what')"  >What Are Essential Oils?</a>
+                    </li>
 
-<h2 class="brand">{{item.name}}</h2>
-{{item.startDate | date: 'MM/dd/yyyy'}} - {{item.endDate | date: 'MM/dd/yyyy' }}
-<p ng-bind-html="item.description"></p>
-<button class="btn btn-primary" ng-click="joinChallenge(item)" ng-hide="belongsTo(item.$id)">Join Challenge</button>
+                    <li><a data-ng-click="scrollTo('about')"  >About Us</a>
+                    </li>
+                    <li><a data-ng-click="scrollTo('contact')" >Contact</a>
+                    </li>
+                    <li><a data-ng-click="scrollTo('opportunity')" >Business Opportunity</a>
+                    </li>
+                </ul>
+               
+            </nav>
+            </section>
+            <section id="home">
+                <div class="leftCol">
+                <h2>Welcome</h2>
+                <p>
+                     We are excited to share our love of essential oils with you.  Between hiking, biking, river rafting, home remodeling projects and yard work, we couldn’t imagine life without essential oils.  Because of how much we play, being healthy is really important to us, as well as having a healthy home environment. </p>
+                <p>We use essential oils for immune support, for cleaning, in cooking, while exercising, for emotional support, in home renovation projects and for emergency preparedness.  Go ahead and contact us to learn how you can start using essential oils in your life.  You will love possibilities that essential oils can create for you.
+                </p>
+                </div>
+                <div class="rightCol">
+                    <div class="grayBar"></div>
+                    <div class="darkgrayBar"></div>
+                    <div class="yellowBar"></div>
+                    
+                    <ul class="linkBox">
+                        <li><a href="#/login"><img src="images/clipboard.jpg" alt="Register link image" /><span class="link">Register</span><br />
+                            Already a team member?  Go ahead and register.</a>
+                        </li>
+                        <li><a href="http://lemongrasslovin.blogspot.com" target="_blank"><img src="images/lemongrass.jpg"  alt="Lemongrass Lovin Blog link image" /><span class="link">LemonGrass Blog</span><br />
+                            The definitive source on essential oil science.
+                            </a>
+                        </li>
+                        <li><a href="http://mydoterra.com/keri" target="_blank"><img src="images/oils.jpg" alt="doterra link image" /><span class="link">My essential wellness store</span><br />
+                            Purchase oils or enroll with me!</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="what">
+                    <h2>What Are Essential Oils?</h2>
+            </section>
+            <section id="about">
+                    <h2>About Us</h2>
+            </section>
+            <section id="contact">
+                    <h2>Contact</h2>
+            </section>
+            <section id="opportunity">
+                    <h2>Business Opportunity</h2>
+            </section>
 
-</div>
-
-
-
+        </div>

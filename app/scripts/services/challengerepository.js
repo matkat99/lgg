@@ -51,8 +51,8 @@ angular.module('lggApp')
          //    return fbutil.sync(ref).$set(newChallenge);
       },
       editChallenge: function(challenge) {
-          if(!challenge.startDate) { challenge.startDate = challenge.startDate.getTime(); }
-          if(!challenge.endDate) {challenge.endDate = challenge.endDate.getTime(); }
+          if(challenge.startDate.getTime) { challenge.startDate = challenge.startDate.getTime(); }
+          if(challenge.endDate.getTime) {challenge.endDate = challenge.endDate.getTime(); }
           syncUserChallenges(challenge);
           return challenge.$save();
       },

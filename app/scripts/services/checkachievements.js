@@ -57,7 +57,7 @@ angular.module('lggApp')
         });
         
          
-       // return meaningOfLife;
+       
       }
     };
   });

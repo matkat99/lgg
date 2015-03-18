@@ -44,9 +44,11 @@ angular.module('lggApp')
           
       $scope.reset = false;
 
-
     };
-    
+
+    $scope.cancelReset = function(){
+        $scope.reset = false;
+    };   
 
     function redirect() {
       $location.path('/');

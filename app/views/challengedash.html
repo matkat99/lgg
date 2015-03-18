@@ -1,117 +1,130 @@
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-8">
-                <h1>{{challenge.name}}</h1>
-            </div>
-            <div class="col-md-4">
-                {{challenge.startDate | date: 'MM/dd/yyyy'}} - {{challenge.endDate | date: 'MM/dd/yyyy'}}
-            </div>
-            <div class="col-md-12"><p ng-bind-html="challenge.instructions"></p></div>
-            <div class="col-md-12">
+
+    <section>
+        <h2>{{challenge.name}}<span class="subheader">{{challenge.startDate | date: 'MM/dd/yyyy'}} - {{challenge.endDate | date: 'MM/dd/yyyy'}}</span></h2>
+    <div class="flexrow">  
+                
+        <div class="flexcol"><div data-ng-bind-html="challenge.instructions"></div></div>
+        
+    </div>
+        <div class="flexrow">
             
-                <form class="form-inline" name="actForm" ng-submit="addLog(actForm.$valid, newLog);" >
-                    <div class="form-group">
-                        <label for="date">Date</label>
-                        <p class="input-group">
-              <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="newLog.date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" required name="date" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
-                        
+            <form class="flexcol styledForm" name="actForm" role="form" data-ng-submit="addLog(actForm.$valid, newLog);" >
+                <div class="flexcol">
+                        <label for="date">Date (yyyy/mm/dd)</label>
+                        <input data-ng-model="newLog.date" type="text" name="date" id="date" class="form-control" >
+                </div>
+                <div class="flexcol">     
                         <label for="type">Type</label>
-                        <select ng-model="newLog.type" name="type" class="form-control" required>
+                        <select data-ng-model="newLog.type" name="type" id="type" class="form-control" required>
+                            <option value="">Pick One</option>
                             <option value="Sample">Sample</option>
                             <option value="FollowUp">Follow Up</option>
                         </select>
-                        <label for="count">Count</label>
-                        <input ng-model="newLog.count" type="number" name="count" class="form-control" size="5" maxlength="3" style="width: 60px" ng-class="{ 'has-error' : actForm.count.$invalid && !actForm.count.$pristine }" required="true" >
-
                     </div>
-                    <div style="min-height: 30px; color: red">
-                    <div ng-messages="actForm.count.$error" ng-if="actForm.$submitted || !actForm.count.$pristine">
-                        <div ng-message="required">Count is required and should be the number of people you shared with.</div>
-                        <div ng-message="number">Count must be Numeric. (Number of people shared with)</div>
+                <div class="flexcol"> 
+                        <label for="count">Count</label>
+                        <input data-ng-model="newLog.count" type="number" name="count" id="count" class="form-control"  data-ng-class="{ 'has-error' : actForm.count.$invalid && !actForm.count.$pristine }" required max="99">
+
+            </div>
+
+                    <div class="error flexcol" style="min-height: 30px; color: red">
+                        <label></label>
+                    <div data-ng-messages="actForm.count.$error" data-ng-if="actForm.$submitted || !actForm.count.$pristine">
+                        <div data-ng-message="required">Count is required and should be the number of people you shared with.</div>
+                        <div data-ng-message="number">Count must be Numeric. (Number of people shared with)</div>
                    
                     </div>
-                    <div ng-messages="actForm.date.$error" ng-if="actForm.$submitted || !actForm.date.$pristine">
-                        <div ng-message="required">Date is required</div>
+                    <div data-ng-messages="actForm.date.$error" data-ng-if="actForm.$submitted || !actForm.date.$pristine">
+                        <div data-ng-message="required">Date is required</div>
                         
                    
                     </div>
-                    <div ng-messages="actForm.type.$error" ng-if="actForm.$submitted || !actForm.type.$pristine">
-                        <div ng-message="required">Type is required</div>
+                    <div data-ng-messages="actForm.type.$error" data-ng-if="actForm.$submitted || !actForm.type.$pristine">
+                        <div data-ng-message="required">Type is required</div>
                                         
                     </div>
                     
                       
                     </div>
-                    <div>
+                    <div class="flexfull">
                         <label for="notes">Notes</label>
-                        <textarea style="width:75%" ng-model="newLog.description" class="form-control" rows="2" name="notes"></textarea>
-                        <button type="submit"  class="btn btn-primary">Add</button>
+                        <textarea data-ng-model="newLog.description" class="form-control" rows="3" name="notes" id="notes"></textarea>
+                        <button type="submit" class="button">Add</button>
                     </div>
                     
                 </form>
-            </div>
+                <div class="fleximg">
+            <img src="images/girls.jpg" alt="Image of girls sharing a secret" >
         </div>
-
-    </div>
-      <!--  <div class="col-md-4"><img src="images/img_1125.jpg">
-        </div> -->
-
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Progress</h3>
             </div>
-            <div class="panel-body">
-            <table class="table">
+            </div>
+</section>
+
+<section class="flexrow">
+    <div class="flex50">
+        
+            
+        <h2>Progress</h2>
+            
+        <div >
+            <table class="progresstable" >
             	<thead>
             		<tr>
             			<th>Type</th><th style="width:35%">Me</th><th style="width:35%">Team</th>
             		</tr>
             	</thead>
             	<tbody>
-            		<tr ng-repeat="(key, item) in progress">
-            			<td><a ng-href="#/activity/{{challenge.$id}}">{{key}}</a></td>
-            			<td><div class="progress">
+            		<tr data-ng-repeat="(key, item) in progress">
+            			<td><a data-ng-href="#/activity/{{challenge.$id}}">{{key}}</a></td>
+            			<td><a data-ng-href="#/activity/{{challenge.$id}}"><div class="progress">
 
-                        <div class="progress-bar" role="progressbar" aria-valuenow="{{item.userPercent | number:2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.userPercent | number:2}}%;" tooltip-placement="left" tooltip="{{item.user}}/{{item.total}}">
-                            <span class="sr-only">{{item.userPercent | number:0}}% Complete</span>
+                        <div class="progress-bar progress-bar-lavender" role="progressbar" aria-valuenow="{{item.userPercent | number:2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.userPercent | number:2}}%;" >
+                            <span data-ng-show="item.userPercent < 100">{{item.user}}/{{item.total}}</span>
                         </div>
-                    	</div>
+                    	</div></a>
                     	</td>
                     	<td>
-                    		<div class="progress">
+                    		<a data-ng-href="#/activity/{{challenge.$id}}"><div class="progress">
 
                         
-                        	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{item.groupPercent | number:2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.groupPercent | number:2}}%;" tooltip-placement="left" tooltip="{{item.group}}/{{item.total*count}}">
-                            <span class="sr-only">{{item.groupPercent | number:2}}% Complete</span>
+                        	<div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="{{item.groupPercent | number:2}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.groupPercent | number:2}}%;" >
+                            <span data-ng-show="item.groupPercent < 100">{{item.group}}/{{item.total*count}}</span>
                        	 </div>
-                    		</div>
+                    		</div></a>
                     	</td>
             		</tr>
             	</tbody>
 
             </table>
                 
-            </div>
+            
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Events</h3>
+    <div class="flex50">
+        
+                <h2>Events</h2>
+            
+            <div class="events">
+                <div data-event=""></div>
             </div>
-            <div class="panel-body events">
-                <event></event>
+        
+    </div>
+</section>
+<!-- Acheivements section --> 
+<section class="achievements">
+
+<h2>Achievements <span class="subheader">{{completed}}/{{achieveCount}}</span></h2>
+<div class="flexrow">
+    <div class="achievement" data-ng-repeat="achieve in challenge.achievements">
+    <img data-ng-src="images/star.png" alt="{{achieve.name}} image"  /> 
+        <h3>{{achieve.name}}</h3> <br>{{ achieveMessage(achieve) }} 
+        
+        <div class="progress">
+            <div class="progress-bar progress-bar-lavender" role="progressbar"  aria-valuenow="{{progress[achieve.type].user | number:2}}" aria-valuemin="0" aria-valuemax="{{achieve.criteria}}" style="width: {{(progress[achieve.type].user/achieve.criteria)*100 | number:2}}%;" >
+                <span data-ng-show="progress[achieve.type].user < achieve.criteria">{{progress[achieve.type].user}}/{{achieve.criteria}}</span>
             </div>
-        </div>
     </div>
 </div>
+
+</section>
