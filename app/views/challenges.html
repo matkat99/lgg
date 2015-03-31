@@ -1,79 +1,27 @@
+<section>
 <h2>Challenges</h2>
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newModal" ng-click="getFormData()">
+<a data-ng-href="#/editChallenge/-99"  >
   New Challenge
-</button>
-<table id="log" ng-show="1" class="table">
+</a>
+<table id="log" data-ng-show="1" class="regtable">
 	<thead>
 		<tr>
-			<th>Name</th><th>StartDate</th><th>EndDate</th><th>Leader</th>
+			<th>Name</th><th>StartDate</th><th>EndDate</th><th>Leader</th><th>&nbsp;</th>
 		</tr>
 		
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in challenges | reverse">
-			<td><a ng-href="#/challengeDetails/{{item.$id}}" >{{item.name}}</a></td>
+		<tr data-ng-repeat="item in challenges | reverse">
+			<td><a data-ng-href="#/challengeDetails/{{item.$id}}" >{{item.name}}</a></td>
 			<td>{{item.startDate | date: 'MM/dd/yyyy'}}</td>
 			<td>{{item.endDate | date: 'MM/dd/yyyy'}}</td>
 			<td>{{item.leader.name}}</td>
-      <td><a href="" ng-click="getChallenge(item);" data-toggle="modal" data-target="#newModal" class="btn btn-primary" >Edit</a>
+      <td><a data-ng-href="#/editChallenge/{{item.$id}}" class="btn btn-primary" >Edit</a>
 		</tr>
 	</tbody>
 
 
 </table>
-<!-- Modal -->
-<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{editLabel}} Challenge</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form">
-        	<div class="form-group"><label for="name">Name</label><input type="text" id="name" ng-model="newChallenge.name" class="form-control"></div>
-		<div class="form-group" ><label>StartDate</label>
-    <p class="input-group">
-              <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="newChallenge.startDate" name="startDate" is-open="datepickers.startDate" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event, 'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
-            </div>
-		<div class="form-group"><label>EndDate</label>
-    <p class="input-group">
-              <input type="text" class="form-control" name="endDate" datepicker-popup="yyyy/MM/dd" ng-model="newChallenge.endDate" is-open="datepickers.endDate" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event, 'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
-    </div>
-    <div class="form-group"><label for="Desc">Description</label><textarea ng-model="newChallenge.description" name="Desc" class="form-control"></textarea></div>
-    <div class="form-group"><label for="Inst">Instructions</label><textarea ng-model="newChallenge.instructions" name="Inst" class="form-control"></textarea></div>
-		<div class="form-group"><label>Leader</label><select id="Leader" ng-model="newChallenge.leader" class="form-control" ng-options="user.name for user in users"></select></div>
-		<div class="checkbox">
-		<p class="help-block">Select the users you would like to participate in this Challenge.</p>
-        <label ng-repeat="user in users">
 
-          <input  type="checkbox" ng-model="newChallenge.users[user.$id]" ng-true-value="'{{user.name}}'">{{user.name}}
-        </label>
-      </div>
-      <div class="checkbox">
-		<p class="help-block">Select the Achievements you would like to include in this Challenge.</p>
-        <label class="checkbox-inline" ng-repeat="item in achievements">
-
-          <input  type="checkbox" name="achievements" ng-model="newChallenge.achievements[item.$id]" ng-true-value="{{item}}">{{item.name}} 
-        </label>
-      </div>
-        </form>
-        
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="addChallenge(newChallenge); ">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<p class="alert alert-danger" ng-show="err">{{err}}</p>
+<p class="alert alert-danger" data-ng-show="err">{{err}}</p>
+</section>

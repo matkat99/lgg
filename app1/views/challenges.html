@@ -1,0 +1,27 @@
+<section>
+<h2>Challenges</h2>
+<a data-ng-href="#/editChallenge/-99" type="button" class="btn btn-primary btn-lg" >
+  New Challenge
+</a>
+<table id="log" ng-show="1" class="regtable">
+	<thead>
+		<tr>
+			<th>Name</th><th>StartDate</th><th>EndDate</th><th>Leader</th><th>&nbsp;</th>
+		</tr>
+		
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in challenges | reverse">
+			<td><a ng-href="#/challengeDetails/{{item.$id}}" >{{item.name}}</a></td>
+			<td>{{item.startDate | date: 'MM/dd/yyyy'}}</td>
+			<td>{{item.endDate | date: 'MM/dd/yyyy'}}</td>
+			<td>{{item.leader.name}}</td>
+      <td><a data-ng-href="#/editChallenge/{{item.$id}}" class="btn btn-primary" >Edit</a>
+		</tr>
+	</tbody>
+
+
+</table>
+
+<p class="alert alert-danger" ng-show="err">{{err}}</p>
+</section>

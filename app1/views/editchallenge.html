@@ -1,0 +1,52 @@
+
+<section>       
+        <h2 >{{editLabel}} Challenge</h2>
+      
+      <div class="flexrow">
+        <form class="styledForm">
+        	<div class="flexcol"><label for="name">Name</label><input type="text" id="name" data-ng-model="newChallenge.name" class="form-control"></div>
+		<div class="flexcol" ><label>StartDate</label>
+    <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" data-ng-model="newChallenge.startDate" name="startDate" is-open="datepickers.startDate" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-ng-click="open($event, 'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+            </div>
+		<div class="flexcol"><label>EndDate</label>
+    <p class="input-group">
+              <input type="text" class="form-control" name="endDate" datepicker-popup="yyyy/MM/dd" data-ng-model="newChallenge.endDate" is-open="datepickers.endDate" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-ng-click="open($event, 'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+    </div>
+    <div class="flexcol"><label for="Desc">Description</label><textarea data-ng-model="newChallenge.description" name="Desc" class="form-control"></textarea></div>
+    <div class="flexcol"><label for="Inst">Instructions</label><textarea data-ng-model="newChallenge.instructions" name="Inst" class="form-control"></textarea></div>
+		<div class="flexcol"><label>Leader</label><select id="Leader" data-ng-model="newChallenge.leader" class="form-control" data-ng-options="user.name for user in users"></select></div>
+		<div class="flexcol clearfix">
+		<p class="help-block">Select the users you would like to participate in this Challenge.</p>
+        <label class="checkbox" data-ng-repeat="user in users">
+
+          <input  type="checkbox" ng-model="newChallenge.users[user.$id]" ng-true-value="'{{user.name}}'">{{user.name}}
+        </label>
+      </div>
+      <div class="flexcol clearfix	">
+		<p class="help-block">Select the Achievements you would like to include in this Challenge.</p>
+        <label class="checkbox" data-ng-repeat="item in achievements">
+
+          <input  type="checkbox" name="achievements" data-ng-model="newChallenge.achievements[item.$id]" data-ng-true-value="{{item}}">{{item.name}} 
+        </label>
+      </div>
+      <div class="flexcol">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">Cancel</button>
+        <button type="button" class="btn btn-primary" data-ng-click="addChallenge(newChallenge); ">Save changes</button>
+    
+    </div>
+        </form>
+        </div>
+        
+        
+      
+      
+    </section>

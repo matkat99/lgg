@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>LemonGrass Girl</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstraps.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    
+</head>
+
+<body data-ng-app="lggApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <header class="topNav clearfix">
+        <nav data-ng-controller="NavbarCtrl">
+            <div class="nav-head">
+                                
+                <a  href="#"> <div class="logo"><img src="images/logo.png" alt="Lemongrass girl Logo" /></div><h1>lemongrass girl</h1></a>
+            </div>
+                <div class="clearfix" >
+                    <label for="nav-toggle" class="nav-toggle"><span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></label>
+    <input type="checkbox" id="nav-toggle" value="1">
+                    <ul class="navs" data-ng-cloak>
+                        <li data-ng-show-auth=""><a data-ng-href="#/chat">Resources</a>
+                        </li>
+                        <li class="drop" data-ng-show-auth="">
+                            <a href="" class="drop-toggle" data-toggle="drop" role="button" aria-expanded="false">Your Challenges<span class="caret"></span></a>
+                            <ul class="drop-menu" role="menu">
+                                <li data-ng-repeat="(key, item) in challenges"><a data-ng-href="#/challengeDash/{{key}}" data-ng-class="{expired: showExpired(item)}">{{item.name}}</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="drop" data-ng-show-admin="">
+                            <a href="" class="drop-toggle" data-toggle="drop" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+                            <ul class="drop-menu" role="menu">
+                                <li><a href="#/achievements">Achievements</a>
+                                </li>
+                                <li><a href="#/users">Users</a>
+                                </li>
+                                <li><a href="#/challenges">Challenges</a>
+                                </li>
+                                <li><a href="#/contactForm">Contact Requests</a>
+                                </li>
+                                
+
+                            </ul>
+                        </li>
+
+                        <li data-ng-hide-auth="">
+                            <a href="#/login">Log In</a>
+                        </li>
+                        <li class="drop" data-ng-show-auth="">
+                            <a href="" class="drop-toggle" data-toggle="drop" role="button" aria-expanded="false">{{user.name}} <span class="caret"></span></a>
+                            <ul class="drop-menu" role="menu">
+                                <li><a href="#/account">Profile</a>
+                                </li>
+                                <li><a href="#" data-ng-click="logout()">Log Out</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- /.collapse -->
+            
+        </nav>
+        
+    </header>
+    <div class="container">
+        
+        
+        <div data-ng-view="" class="content"></div>
+        <div data-award=""></div>
+    </div>
+        <footer>
+            <div class="social">
+                <a href="http://lemongrasslovin.blogspot.com"  target="_blank"><img src="images/blogger.png" alt="Blogger icon" /></a>
+                <a href="https://facebook.com/lemongrasslovin"  target="_blank"><img src="images/facebook.png" alt="Facebook icon" /></a>
+                <a href="https://pinterest.com/kerit/doterra-essential-oils"  target="_blank"><img src="images/pinterest.png" alt="Pinterest icon" /></a>
+                <a href="http://linkedin.com/in/lemongrassgirl"  target="_blank"><img src="images/linkedin.png" alt="LinkedIn icon" /></a>
+            </div>
+            <p>&copy; 2015 LemonGrassGirl. <a href="styleguide/styleguide.html">Styleguide</a> <a href="practice/index.html">Practice</a></p>
+        </footer>
+    
+
+    <div data-ng-controller="ModalAwardCtrl">
+        <script type="text/ng-template" id="awardModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Way to Go!</h3>
+            </div>
+            <div class="modal-body">
+                <img src="images/star.png" width="70" />{{award}}
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="ok()">OK</button>
+
+            </div>
+        </script>
+    </div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+        ! function (A, n, g, u, l, a, r) {
+            A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+                    (A[l].q = A[l].q || []).push(arguments)
+                }, A[l].l = +new Date, a = n.createElement(g),
+                r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+        }(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-XXXXX-X');
+        ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/ng-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/angularfire/config.js"></script>
+    <script src="scripts/angularfire/firebase.utils.js"></script>
+    <script src="scripts/controllers/chat.js"></script>
+    <script src="scripts/filters/reverse.js"></script>
+    <script src="scripts/angularfire/simpleLogin.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/account.js"></script>
+    <script src="scripts/directives/ngShowAuth.js"></script>
+    <script src="scripts/directives/ngShowAdmin.js"></script>
+    <script src="scripts/directives/ngHideAuth.js"></script>
+    <script src="scripts/routes.js"></script>
+    <script src="scripts/controllers/sample.js"></script>
+    <script src="scripts/controllers/achievements.js"></script>
+    <script src="scripts/controllers/users.js"></script>
+    <script src="scripts/services/userrepository.js"></script>
+    <script src="scripts/services/achievementrepository.js"></script>
+    <script src="scripts/services/activitylogrepository.js"></script>
+    <script src="scripts/controllers/activity.js"></script>
+    <script src="scripts/controllers/challenges.js"></script>
+    <script src="scripts/services/challengerepository.js"></script>
+    <script src="scripts/controllers/challengedash.js"></script>
+    <script src="scripts/directives/nav.js"></script>
+    <script src="scripts/controllers/navbar.js"></script>
+    <script src="scripts/services/eventrepository.js"></script>
+    <script src="scripts/services/challengedatarepository.js"></script>
+    <script src="scripts/directives/event.js"></script>
+    <script src="scripts/services/checkachievements.js"></script>
+    <script src="scripts/directives/award.js"></script>
+    <script src="scripts/controllers/challengedetails.js"></script>
+    <script src="scripts/services/calcprogress.js"></script>
+    <script src="scripts/services/contactformrepository.js"></script>
+    <script src="scripts/controllers/contactform.js"></script>
+    <script src="scripts/controllers/editchallenge.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>
