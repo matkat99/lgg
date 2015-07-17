@@ -51,7 +51,7 @@
                         
           </ul>
         </li>
-          <li class="dropdown" ng-show-admin="">
+          <li class="dropdown" ng-show-admin=""> <!-- only shows for Admins -->
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#/achievements">Achievements</a></li>
@@ -62,7 +62,7 @@
             
           </ul>
         </li>
-      
+      <!--hide login button and show the rest after login -->
           <li ng-hide-auth="">
             <a  href="#/login">Log In</a>
           </li>

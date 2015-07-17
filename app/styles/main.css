@@ -38,7 +38,7 @@ a:active{
 
 section:after,
 .clearfix:after,
-.linkBox li:after {
+.linkBox2 li:after {
     visibility: hidden;
     display: block;
     font-size: 0;
@@ -605,10 +605,10 @@ h2 .subheader {
     padding-right: 5px;
 }
 
-.linkBox .link {
-    font-size: 1.2em;
+.link {
+    font-size: 1em;
     display: inline-block;
-    padding: .4em 0;
+    padding: 0;
     text-decoration: underline;
 }
 
@@ -618,6 +618,34 @@ h2 .subheader {
 
 .linkBox li:hover {
     background-color: #d5e8a6;
+}
+
+.linkBox2 {
+  display: -webkit-flex;
+  display: flex;
+  list-style-type: none;
+  text-align: center;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.linkBox2 li{
+  -webkit-flex: 0 150px;
+    flex: 0 150px;
+    width: 150px;
+    margin-left: 40px;
+}
+
+.linkBox2 span.description {
+  display: none;
+}
+
+.linkBox2 img {
+    width: 150px;
+
 }
 
 .infobox {
@@ -658,6 +686,27 @@ h2 .subheader {
     .linkBox li {
         margin: 10px 0 10px 0;
     }
+    .linkBox2 {
+      display: block;
+      text-align: left;
+
+    }
+    .linkBox2 li{
+    -webkit-flex: 100%;
+    flex: 100%;
+    width: 100%;
+    margin: 10px;
+    font-size: .8em;
+}
+.linkBox2 span.description {
+  display: inline;
+}
+.linkBox2 img {
+    width: 70px;
+    vertical-align: top;
+    margin-right: 10px;
+    float: left;
+}
     section h2 {
       font-size: 6vw;
     }
@@ -777,9 +826,7 @@ footer p {
 
 } 
 
-.oilList a:link, .oilList a:visited {
-  color: black;
-}
+
 
 
 @media screen and (max-width: 768px) {
@@ -871,7 +918,7 @@ footer p {
     height: 320px;
     padding: 10px 10px 10px 10px;
     /* border: 2px solid #c8a9d0; */  
-    background-color: #d5e8a6;
+    background-color: #f3f8cc;
     margin: 0 auto 20px auto;
     font-family: Colwell, script;
 }
@@ -899,7 +946,7 @@ footer p {
 .contactForm input, .contactForm textarea{
   width: 90%;
   margin: -5px auto;
-  background-color: #d5e8a6;
+  background-color: #f3f8cc;
   border-top: 0;
   border-left: 0;
   border-right: 0;
@@ -962,6 +1009,7 @@ footer p {
   margin-top: 10px;
   border: 1px solid;
   padding: 6px 8px;
+  background-color: #f3f8cc;
 }
 
 .contactForm button:hover {
